@@ -5,23 +5,27 @@ var youtubeURL = "https://www.youtube.com/watch?v=";
 
 var c = new Crawler({
 	"maxConnections":10,
-
+	'userAgent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101 Safari/537.36',
 	"callback":function(error,result,$) {
 		 $(".related-video").each(function(index,a) {
 			var ID = a.href.substr(32);
 			//console.log("ID: "+ID);
-			c.queue([{
-				"uri":'https://gdata.youtube.com/feeds/api/videos/'+ID+'?v=2&alt=json',
-				"jQuery":false,
-				"callback":function(error,result) {
-					if (error) return;
-					var entry = JSON.parse(result.body).entry;
-					if (entry.yt$statistics.viewCount > 100000){
-						shell.echo('title:'+entry.title.$t+' ,viewerCount:'+entry.yt$statistics.viewCount+' ,ID:'+entry.media$group.yt$videoid.$t+'\n').toEnd('output.txt');
+			setTimeout(function(){
+				c.queue([{
+					"uri":'https://gdata.youtube.com/feeds/api/videos/'+ID+'?v=2&alt=json',
+					"jQuery":false,
+					"callback":function(error,result) {
+						if (error) return;
+						
+						var entry = JSON.parse(result.body).entry;
+						if (entry.yt$statistics.viewCount > 100000){
+							shell.echo('title:'+entry.title.$t+' ,viewerCount:'+entry.yt$statistics.viewCount+' ,ID:'+entry.media$group.yt$videoid.$t+'\n').toEnd('output.txt');
+						}
+						setTimeout(function(){ c.queue(a.href); }, 1000*index);
+						
 					}
-					c.queue(a.href);
-				}
-			}]);
+				}]);
+			},1000*index);
 			
 		});
 	}
