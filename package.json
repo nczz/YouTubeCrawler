@@ -1,0 +1,23 @@
+{
+  "name": "youtubecrawler",
+  "version": "0.0.0",
+  "description": "Youtube mining",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://git.csie.nuu.edu.tw/mxp/YouTubeCrawler.git"
+  },
+  "keywords": [
+    "Youtube",
+    "data",
+    "mining"
+  ],
+  "author": "HungChun (Mxp)",
+  "license": "BSD",
+  "dependencies": {
+    "crawler": "~0.2.5"
+  }
+}
