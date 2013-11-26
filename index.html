@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>YouTube Crawler</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,7 +16,8 @@
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-		關鍵字：<input type="text" id="keyword"/><br />
+
+		關鍵字(一行一組)：<textarea id="keyword" cols="20" rows="5"></textarea><br />
 		點閱數＞：<input type="text" id="viewerCount" value="0"/><br />
 		頁數：<select id="pages">
 			　<option value="1">1</option>
@@ -30,7 +31,8 @@
 			 <option value="9">9</option>
 			 <option value="10">10</option>
 			</select><br />
-        <button id="search">搜尋</button>
+        <button id="search">搜尋</button><br />
+		結果：<textarea id="resultURL" class="auto_select" cols="60" rows="5"></textarea><br />
 		<div id="result"></div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
